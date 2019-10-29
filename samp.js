@@ -392,6 +392,10 @@ var samp = (function() {
     // technologies and not others, according to configuration.
     XmlRpcClient.createXHR = function() {
 
+        if(typeof SampBrowserExtension !== 'undefined') {
+            return SampBrowserExtension.createXhrFacade();
+        }
+
         // Creates an XHR facade based on a genuine XMLHttpRequest Level 2.
         var XhrL2 = function(xhr) {
             this.xhr = xhr;
